@@ -7,3 +7,43 @@
 //
 //  Each tab should look like this:
 //    <div class="tab">topic here</div>
+axios.get("https://lambda-times-backend.herokuapp.com/topics")
+let topicsArray = []
+const parentOfTopics = document.querySelector('.topics')
+
+    axios.get("https://lambda-times-backend.herokuapp.com/topics")
+    .then(response => {
+        topicsArray = response.data.topics
+        topicsArray.forEach(topic => {
+            let newTopic = makeTopic(topic)
+            parentOfTopics.appendChild(newTopic)
+        })
+        console.log(response.data.topics)
+    })
+    .catch(error => {
+        console.log(`this is the error message number 2`, error)
+    })
+
+function makeTopic (topics) {
+    const topic = document.createElement('div')
+    topic.classList.add('tab')
+    topic.textContent = topics
+    return topic
+}
+
+// function getTopics(data) {
+//     axios.get("https://lambda-times-backend.herokuapp.com/topics")
+
+//     .then(response => {
+//         const topicsArray =  response.data.topics
+
+//         topicsArray.forEach(topics => {
+//             let newTopic = makeTopic(topics)
+//             document.querySelector('.topics').appendChild(newTopic)
+//             console.log(response)
+//         })
+//     })
+//     .catch(error => {
+//         console.log(`this is the error message number 2`, error)
+//     })
+// }
