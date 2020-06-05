@@ -19,19 +19,29 @@
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
 
-const parentOfCards = document.querySelector('.cards-container')
 
+// parentOfCards.appendChild(articleCardMaker(response))
+// console.log(response.data.articles)
+
+const parentOfCards = document.querySelector('.cards-container')
+let arrayOfArrays = []
+let arrayOfbootstrap = []
+let arrayOfjavascript = []
+let arrayOfjquery = [] 
+let arrayOfnode = []
+let arrayOftechnology = []
 axios.get("https://lambda-times-backend.herokuapp.com/articles")
 
 .then(response => {
-    parentOfCards.appendChild(articleCardMaker(response))
+    arrayOfbootstrap = response.data.articles.bootstrap
+    arrayOfjavascript = response.data.articles.javascript
+    arrayOfArrays = arrayOfArrays.push(arrayOfbootstrap)
+    debugger
     console.log(response.data.articles)
 })
 .catch(error => {
     console.log(`This is the error message for the article cards`, error)
 })
-
-
 
 
 function articleCardMaker (data){
