@@ -18,3 +18,41 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
+
+const parentOfCards = document.querySelector('.cards-container')
+
+axios.get("https://lambda-times-backend.herokuapp.com/articles")
+
+.then(response => {
+    parentOfCards.appendChild(articleCardMaker(response))
+    console.log(response.data.articles)
+})
+.catch(error => {
+    console.log(`This is the error message for the article cards`, error)
+})
+
+
+
+
+function articleCardMaker (data){
+    const {authorName, authorPhoto, headline} = data
+    const card = document.createElement('div')
+    card.classList.add('card')
+    const headlineTag = document.createElement('div')
+    headlineTag.classList.add('headline')
+    headlineTag.textContent = `${headline}`
+    card.appendChild(headlineTag)  
+    const author = document.createElement('div')
+    author.classList.add('author')
+    card.appendChild(author)
+    const imgContainer = document.createElement('div')
+    imgContainer.classList.add('img-container')
+    author.appendChild(imgContainer)
+    const img = document.createElement('img')
+    img.src = `${authorPhoto}`
+    imgContainer.appendChild(img)
+    const span = document.createElement('span')
+    span.textContent = `${authorName}`
+    author.appendChild(span)
+return card
+}

@@ -18,7 +18,6 @@ const parentOfTopics = document.querySelector('.topics')
             let newTopic = makeTopic(topic)
             parentOfTopics.appendChild(newTopic)
         })
-        console.log(response.data.topics)
     })
     .catch(error => {
         console.log(`this is the error message number 2`, error)
@@ -30,20 +29,3 @@ function makeTopic (topics) {
     topic.textContent = topics
     return topic
 }
-
-// function getTopics(data) {
-//     axios.get("https://lambda-times-backend.herokuapp.com/topics")
-
-//     .then(response => {
-//         const topicsArray =  response.data.topics
-
-//         topicsArray.forEach(topics => {
-//             let newTopic = makeTopic(topics)
-//             document.querySelector('.topics').appendChild(newTopic)
-//             console.log(response)
-//         })
-//     })
-//     .catch(error => {
-//         console.log(`this is the error message number 2`, error)
-//     })
-// }
